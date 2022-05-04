@@ -1,7 +1,6 @@
 {
   "name": "laptop-warehouse-server",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -14,7 +13,17 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.18.0",
-    "mongodb": "^4.5.0"
-  }
+    "express": "^4.18.1",
+    "mongodb": "^4.5.0",
+    "nodemon": "^2.0.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-IshtyMahin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-IshtyMahin/issues"
+  },
+  "homepage": "https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-IshtyMahin#readme",
+  "description": ""
 }
