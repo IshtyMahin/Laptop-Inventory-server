@@ -17,7 +17,7 @@ async function run() {
   try {
     await client.connect();
     const productCollection = client.db("laptopWarehouse").collection("product");
-    
+    const myItemsCollection = client.db("laptopWarehouse").collection("myItem")
 
     app.get("/product", async (req, res) => {
       const query = {};
@@ -38,7 +38,7 @@ async function run() {
       const newProduct = req.body;
       const result = await productCollection.insertOne(newProduct);
       res.send(result);
-  })
+    })
 
   //DELETE
   app.delete('/product/:id',async(req,res)=>{
@@ -48,8 +48,37 @@ async function run() {
     res.send(result);
 });
 
-    
 
+    // update 
+    app.put("/product/:id",async(req,res)=>{
+      const id = req.params.id;
+      const newQuantity = req.body;
+      console.log(id,newQuantity.quantity);
+      const filter = {_id:ObjectId(id)};
+      const option ={upsert: true};
+      const updateQuantity = {
+        $set: {
+          quantity: newQuantity.quantity
+        }
+      };
+      const result = await productCollection.updateOne(filter,updateQuantity,option);
+      res.send(result)
+      // console.log(quantity)
+    })
+
+
+    // myItem
+    app.post('/myItems',async(req,res)=>{
+      const myItem = req.body;
+      const result = await myItemsCollection.insertOne(myItem);
+      res.send(result);
+    })
+    app.get("/myItems", async (req, res) => {
+      const query = {};
+      const cursor = myItemsCollection.find(query);
+      const myItems = await cursor.toArray();
+      res.send(myItems);
+    });
   } finally {
   }
 }
