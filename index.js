@@ -17,7 +17,7 @@ async function run() {
   try {
     await client.connect();
     const productCollection = client.db("laptopWarehouse").collection("product");
-    const myItemsCollection = client.db("laptopWarehouse").collection("myItem")
+    
 
     app.get("/product", async (req, res) => {
       const query = {};
@@ -47,12 +47,7 @@ async function run() {
     const result = await productCollection.deleteOne(query);
     res.send(result);
 });
-  app.delete('/myItems/:id',async(req,res)=>{
-    const id = req.params.id;
-    const query = {_id: ObjectId(id)};
-    const result = await myItemsCollection.deleteOne(query);
-    res.send(result);
-});
+
 
 
     // update 
